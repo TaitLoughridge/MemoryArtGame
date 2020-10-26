@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+import Home from './Components/Home';
+import Game from './Components/Game';
+import JustArt from './Components/JustArt';
+
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Router>
+				<nav>
+					<Link to="/">Home | </Link>
+					<Link to="/game">Game | </Link>
+					<Link to="/justart">JustArt</Link>
+				</nav>
+				<Switch>
+					<Route exact path="/">
+						<Home />
+					</Route>
+					<Route path="/game">
+						<Game />
+					</Route>
+					<Route path="/justart">
+						<JustArt />
+					</Route>
+					{/* needs to be last Route */}
+					<Route path="*">
+						<h2>PAGE NOT FOUND!</h2>
+						<Link to="/">Return to Homepage</Link>
+					</Route>
+				</Switch>
+			</Router>
+		</div>
+	);
 }
 
 export default App;
