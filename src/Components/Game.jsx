@@ -1,32 +1,18 @@
 import React, { Component } from 'react';
 import MemoryCard from './MemoryCard';
-import ArtCall from './ArtCall';
+
 import '../../src/App.css';
 
-function generateDeck() {
-	const symbols = [ `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8` ];
-	const images = [
-		'https://images.metmuseum.org/CRDImages/ep/web-large/DT1032.jpg',
-		'https://images.metmuseum.org/CRDImages/ep/web-large/DT297552.jpg',
-		'https://images.metmuseum.org/CRDImages/ad/web-large/ap17.182.jpg',
-		'https://images.metmuseum.org/CRDImages/ep/web-large/DT1860.jpg',
-		'https://images.metmuseum.org/CRDImages/ep/web-large/DT1964.jpg',
-		'https://images.metmuseum.org/CRDImages/ep/web-large/DT840.jpg',
-		'https://images.metmuseum.org/CRDImages/ep/web-large/DP257756.jpg',
-		'https://images.metmuseum.org/CRDImages/ep/web-large/DP259921.jpg'
-	];
+function generateDeck(images) {
 	const deck = [];
-	if (images != null) {
-		for (let i = 0; i < 16; i++) {
-			const card = { isFlipped: false, symbol: images[i % 8] };
-			deck.push(card);
-		}
+	for (let i = 0; i < 16; i++) {
+		const card = { isFlipped: false, symbol: images[i % 8] };
+		deck.push(card);
 	}
+
 	shuffle(deck);
 	return deck;
 }
-
-
 
 function shuffle(a) {
 	for (let i = a.length - 1; i > 0; i--) {
@@ -40,7 +26,7 @@ class Game extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			deck: generateDeck(),
+			deck: [],
 			pickedCards: [],
 			allArtData: [],
 			artData: [],
@@ -48,40 +34,40 @@ class Game extends Component {
 		};
 	}
 
-	fetchArtwork = () => {
-		fetch(
-			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=Impressionism`
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				this.setState({ allArtData: data });
-				this.shuffleArtwork(data.objectIDs);
-			});
-	};
+	fetchArtwork = async (category) => {
+		const allArtData = await fetch(
+			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=${category}`
+		).then((response) => response.json());
 
-	shuffleArtwork = (artwork) => {
-		let shuffledArt = artwork
+		const shuffledArt = allArtData.objectIDs
 			.map((a) => ({ sort: Math.random(), value: a }))
 			.sort((a, b) => a.sort - b.sort)
 			.map((a) => a.value);
 
-		// console.log('shuffled: ', shuffledArt.slice(0, 8));
+		let imagesArray = [];
 
-		shuffledArt.slice(0, 8).forEach((id) => {
-			fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-				.then((response) => response.json())
-				.then((artWork) => {
-					this.setState({
-						artData: [ ...this.state.artData, artWork ],
-						imagesArray: [ ...this.state.imagesArray, artWork.primaryImageSmall ]
-					});
-				});
+		Promise.all(
+			shuffledArt.slice(0, 8).map(async (id) => {
+				return await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`).then((response) =>
+					response.json()
+				);
+			})
+		).then((artData) => {
+			artData.map((artWork) => {
+				imagesArray = [ ...imagesArray, artWork.primaryImageSmall ];
+			});
+
+			this.setState({
+				deck: generateDeck(imagesArray),
+				artData,
+				allArtData,
+				imagesArray
+			});
 		});
 	};
 
 	async componentDidMount() {
-		const response = await this.fetchArtwork();
-		console.log(this.state.imagesArray);
+		this.fetchArtwork('Impressionism');
 	}
 
 	pickCard = (cardIndex) => {
@@ -139,8 +125,6 @@ class Game extends Component {
 		});
 	};
 
-	
-	
 	render() {
 		const cardsJSX = this.state.deck.map((card, index) => {
 			return (
@@ -148,16 +132,13 @@ class Game extends Component {
 			);
 		});
 		return (
-			<>
-			<h1>Art Match</h1>
-			<button onClick={() => window.location.reload(false)}>Click to reload!</button>
 			<div className="App">
+				<button onClick={() => window.location.reload(false)}>Click to reload!</button>
 				<div>{cardsJSX.slice(0, 4)}</div>
 				<div>{cardsJSX.slice(4, 8)}</div>
 				<div>{cardsJSX.slice(8, 12)}</div>
 				<div>{cardsJSX.slice(12, 16)}</div>
 			</div>
-			</>
 		);
 	}
 }
