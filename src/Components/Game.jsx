@@ -44,31 +44,29 @@ class Game extends Component {
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ allArtData: data });
-				// console.log(data);
-
 				this.shuffleArtwork(data.objectIDs);
-			)};
+			});
+	};
 
 	shuffleArtwork = (artwork) => {
 		let shuffledArt = artwork
-					.map((a) => ({ sort: Math.random(), value: a }))
-					.sort((a, b) => a.sort - b.sort)
-					.map((a) => a.value);
+			.map((a) => ({ sort: Math.random(), value: a }))
+			.sort((a, b) => a.sort - b.sort)
+			.map((a) => a.value);
 
-				// console.log('shuffled: ', shuffledArt.slice(0, 8));
+		// console.log('shuffled: ', shuffledArt.slice(0, 8));
 
-				shuffledArt.slice(0, 8).forEach((id) => {
-					fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-						.then((response) => response.json())
-						.then((artWork) => {
-							this.setState({
-								artData: [ ...this.state.artData, artWork ],
-								imagesArray: [ ...this.state.imagesArray, artWork.primaryImageSmall ]
-							});
-						});
+		shuffledArt.slice(0, 8).forEach((id) => {
+			fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+				.then((response) => response.json())
+				.then((artWork) => {
+					this.setState({
+						artData: [ ...this.state.artData, artWork ],
+						imagesArray: [ ...this.state.imagesArray, artWork.primaryImageSmall ]
+					});
 				});
-			});
-	 
+		});
+	};
 
 	async componentDidMount() {
 		const response = await this.fetchArtwork();
