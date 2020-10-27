@@ -13,7 +13,7 @@ class MemoryCard extends Component {
 						<img src="/images/Salon-1.png" alt="Salon Logo" />
 					</div>
 					<div className="MemoryCardFront">
-						<div>{this.props.symbol}</div>
+						<img src={this.props.symbol} alt={this.props.symbol} />
 					</div>
 				</div>
 			</div>

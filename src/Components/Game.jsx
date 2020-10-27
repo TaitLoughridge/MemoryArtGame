@@ -3,9 +3,18 @@ import MemoryCard from './MemoryCard';
 import ArtCall from './ArtCall';
 import '../../src/App.css';
 
-function generateDeck(images) {
-	console.log(images);
+function generateDeck() {
 	const symbols = [ `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8` ];
+	const images = [
+		'https://images.metmuseum.org/CRDImages/ep/web-large/DT1032.jpg',
+		'https://images.metmuseum.org/CRDImages/ep/web-large/DT297552.jpg',
+		'https://images.metmuseum.org/CRDImages/ad/web-large/ap17.182.jpg',
+		'https://images.metmuseum.org/CRDImages/ep/web-large/DT1860.jpg',
+		'https://images.metmuseum.org/CRDImages/ep/web-large/DT1964.jpg',
+		'https://images.metmuseum.org/CRDImages/ep/web-large/DT840.jpg',
+		'https://images.metmuseum.org/CRDImages/ep/web-large/DP257756.jpg',
+		'https://images.metmuseum.org/CRDImages/ep/web-large/DP259921.jpg'
+	];
 	const deck = [];
 	if (images != null) {
 		for (let i = 0; i < 16; i++) {
@@ -16,6 +25,8 @@ function generateDeck(images) {
 	shuffle(deck);
 	return deck;
 }
+
+
 
 function shuffle(a) {
 	for (let i = a.length - 1; i > 0; i--) {
@@ -29,7 +40,7 @@ class Game extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			deck: generateDeck(null),
+			deck: generateDeck(),
 			pickedCards: [],
 			allArtData: [],
 			artData: [],
@@ -128,6 +139,8 @@ class Game extends Component {
 		});
 	};
 
+	
+	
 	render() {
 		const cardsJSX = this.state.deck.map((card, index) => {
 			return (
@@ -135,12 +148,16 @@ class Game extends Component {
 			);
 		});
 		return (
+			<>
+			<h1>Art Match</h1>
+			<button onClick={() => window.location.reload(false)}>Click to reload!</button>
 			<div className="App">
 				<div>{cardsJSX.slice(0, 4)}</div>
 				<div>{cardsJSX.slice(4, 8)}</div>
 				<div>{cardsJSX.slice(8, 12)}</div>
 				<div>{cardsJSX.slice(12, 16)}</div>
 			</div>
+			</>
 		);
 	}
 }
