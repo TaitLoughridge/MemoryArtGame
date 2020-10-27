@@ -3,12 +3,15 @@ import MemoryCard from './MemoryCard';
 import ArtCall from './ArtCall';
 import '../../src/App.css';
 
-function generateDeck() {
-	const symbols = [ `∆`, `ß`, `£`, `§`, `•`, `$`, `+`, `ø` ];
+function generateDeck(images) {
+	console.log(images);
+	const symbols = [ `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8` ];
 	const deck = [];
-	for (let i = 0; i < 16; i++) {
-		const card = { isFlipped: false, symbol: symbols[i % 8] };
-		deck.push(card);
+	if (images != null) {
+		for (let i = 0; i < 16; i++) {
+			const card = { isFlipped: false, symbol: images[i % 8] };
+			deck.push(card);
+		}
 	}
 	shuffle(deck);
 	return deck;
@@ -26,9 +29,50 @@ class Game extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			deck: generateDeck(),
-			pickedCards: []
+			deck: generateDeck(null),
+			pickedCards: [],
+			allArtData: [],
+			artData: [],
+			imagesArray: []
 		};
+	}
+
+	fetchArtwork = () => {
+		fetch(
+			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=Impressionism`
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({ allArtData: data });
+				// console.log(data);
+
+				this.shuffleArtwork(data.objectIDs);
+			)};
+
+	shuffleArtwork = (artwork) => {
+		let shuffledArt = artwork
+					.map((a) => ({ sort: Math.random(), value: a }))
+					.sort((a, b) => a.sort - b.sort)
+					.map((a) => a.value);
+
+				// console.log('shuffled: ', shuffledArt.slice(0, 8));
+
+				shuffledArt.slice(0, 8).forEach((id) => {
+					fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+						.then((response) => response.json())
+						.then((artWork) => {
+							this.setState({
+								artData: [ ...this.state.artData, artWork ],
+								imagesArray: [ ...this.state.imagesArray, artWork.primaryImageSmall ]
+							});
+						});
+				});
+			});
+	 
+
+	async componentDidMount() {
+		const response = await this.fetchArtwork();
+		console.log(this.state.imagesArray);
 	}
 
 	pickCard = (cardIndex) => {

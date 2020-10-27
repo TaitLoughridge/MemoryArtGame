@@ -28,7 +28,7 @@ img {
 .MemoryCardFront {
 	font-size: 30px;
 	line-height: 72px;
-	transform: rotateY(180deg);
+	transform: rotateX(-180deg);
 }
 
 .MemoryCardFront,
@@ -39,5 +39,5 @@ img {
 	backface-visibility: hidden;
 }
 .MemoryCardInner.flipped {
-	transform: rotateY(180deg);
+	transform: rotateX(-180deg);
 }

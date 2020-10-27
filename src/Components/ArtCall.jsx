@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
+import ArtCard from './ArtCard';
 
-class ArtCall extends React.Component {
+class ArtCall extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			allArtData: [],
 			artData: []
 		};
 	}
 
 	componentDidMount() {
 		fetch(
-			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=Abstract`
-		).then(function(response) {
-			console.log(response.data);
-			response.data.objectIDs.forEach((id) => {
-				fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`).then(function(response) {
-					console.log(response.data.primaryImage);
+			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=Impressionism`
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({ allArtData: data });
+				// console.log(data);
+
+				let unshuffledArt = data.objectIDs;
+
+				let shuffledArt = unshuffledArt
+					.map((a) => ({ sort: Math.random(), value: a }))
+					.sort((a, b) => a.sort - b.sort)
+					.map((a) => a.value);
+
+				// console.log('shuffled: ', shuffledArt.slice(0, 8));
+
+				shuffledArt.slice(0, 8).forEach((id) => {
+					fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+						.then((response) => response.json())
+						.then((artWork) => {
+							this.setState({ artData: [ ...this.state.artData, artWork ] });
+							console.log(artWork);
+						});
 				});
 			});
-		});
 	}
 
-	// render() {
-	//   // rendering stuff here
-	// }
+	render() {
+		const { artData } = this.state;
+		return (
+			<div>
+				{artData.map((artWork) => {
+					return <ArtCard artWork={artWork} />;
+				})}
+			</div>
+		);
+	}
 }
 
 export default ArtCall;
