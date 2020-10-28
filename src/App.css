@@ -48,3 +48,15 @@ a {
 	color: inherit; /* blue colors for links too */
 	text-decoration: inherit; /* no underline */
 }
+
+.masonry {
+	/* Masonry container */
+	column-count: 2;
+	column-gap: 1em;
+}
+
+.item {
+	display: inline-block;
+	margin: 0 0 1em;
+	width: 100%;
+}

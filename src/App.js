@@ -19,9 +19,13 @@ function App() {
 			<Router>
 				<nav>
 					<div class="nav-wrapper indigo darken-2">
-						<Link to="/">Home | </Link>
-						<Link to="/game">Game | </Link>
-						<Link to="/justart">JustArt</Link>
+						<Link
+							onClick={() => {
+								window.location.href = '/';
+							}}
+						>
+							Home{' '}
+						</Link>
 					</div>
 				</nav>
 				<Switch>

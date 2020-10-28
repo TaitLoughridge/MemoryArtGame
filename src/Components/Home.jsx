@@ -1,17 +1,38 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import 'materialize-css';
 import './Home.css'
 import '../App.css';
 
 
-const Home = props => (
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('Your favorite flavor is: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
     <>
     <h1 className='blue-grey-text text-lighten-4'>Art Match</h1>
     <p className='blue-grey-text text-lighten-4'>Welcome to Art Match, the game all about art!</p>
+    <form onSubmit={this.handleSubmit}>
     <div class="input-field col s12 container centered">
-      <select>
-        <option value="" disabled selected>Choose an Art Movement</option>
+      <select value={this.state.value} onChange={this.handleChange}>
+        <option value="Choose an Art Movement">Choose an Art Movement</option>
         <option value="Medieval">Medieval</option>
         <option value="Renaissance">Renaissance</option>
         <option value="Baroque">Baroque</option>
@@ -35,13 +56,14 @@ const Home = props => (
         <option value="Art-Deco">Art-Deco</option>
         <option value="Pop-Art">Pop-Art</option>
       </select>
-      </div>
+      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}><Link to="/game">Play Game</Link></button>
       <br/>
-      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}>Play Game</button>
-      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}>Just the Art</button>
-
+      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}><Link to="/justart">Just The Art</Link></button>
+    </div>
+    </form>
     </>
-);
+    )};
+}
 
 export default Home;
 

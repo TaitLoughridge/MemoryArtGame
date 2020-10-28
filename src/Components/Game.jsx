@@ -69,7 +69,7 @@ class Game extends Component {
 	};
 
 	async componentDidMount() {
-		this.fetchArtwork('Impressionism');
+		this.fetchArtwork('Rococo');
 	}
 
 	pickCard = (cardIndex) => {
