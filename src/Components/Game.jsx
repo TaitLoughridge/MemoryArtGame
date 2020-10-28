@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import MemoryCard from './MemoryCard';
 
-import '../../src/App.css';
+import 'materialize-css';
+import '../App.css';
+import './Game.css';
 
 function generateDeck(images) {
 	const deck = [];

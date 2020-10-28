@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ArtCall from './ArtCall';
+
+import 'materialize-css';
 import './MemoryCard.css';
 
 class MemoryCard extends Component {

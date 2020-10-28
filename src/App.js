@@ -5,16 +5,24 @@ import Home from './Components/Home';
 import Game from './Components/Game';
 import JustArt from './Components/JustArt';
 
+import M from 'materialize-css';
 import './App.css';
 
 function App() {
+	document.addEventListener('DOMContentLoaded', function() {
+		var elems = document.querySelectorAll('select');
+		var instances = M.FormSelect.init(elems);
+	});
+
 	return (
 		<div className="App">
 			<Router>
 				<nav>
-					<Link to="/">Home | </Link>
-					<Link to="/game">Game | </Link>
-					<Link to="/justart">JustArt</Link>
+					<div class="nav-wrapper indigo darken-2">
+						<Link to="/">Home | </Link>
+						<Link to="/game">Game | </Link>
+						<Link to="/justart">JustArt</Link>
+					</div>
 				</nav>
 				<Switch>
 					<Route exact path="/">

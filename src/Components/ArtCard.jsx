@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './MemoryCard.css';
 
+import 'materialize-css';
+
 function ArtCard(props) {
 	const { artWork } = props;
 	console.log(props);

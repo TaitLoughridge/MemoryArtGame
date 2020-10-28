@@ -1,13 +1,17 @@
 import React from 'react';
+
+import 'materialize-css';
 import './Home.css'
+import '../App.css';
+
 
 const Home = props => (
     <>
     <h1>Art Match</h1>
     <p>Welcome to Art Match, the game all about art!</p>
-
-      <label for="artMovements">Choose a Art Movement:</label>
-      <select name="artMovements" id="artMovements">
+    <div class="input-field col s12">
+      <select>
+        <option value="" disabled selected>Choose a Art Movement</option>
         <option value="Medieval">Medieval</option>
         <option value="Renaissance">Renaissance</option>
         <option value="Baroque">Baroque</option>
@@ -31,13 +35,13 @@ const Home = props => (
         <option value="Art-Deco">Art-Deco</option>
         <option value="Pop-Art">Pop-Art</option>
       </select>
-
+      </div>
       <br/>
-
-      <button onClick={() => window.location.reload(false)}>Play Game</button>
-      <button onClick={() => window.location.reload(false)}>Just the Art</button>
+      <button class="waves-effect waves-light btn" onClick={() => window.location.reload(false)}>Play Game</button>
+      <button class="waves-effect waves-light btn" onClick={() => window.location.reload(false)}>Just the Art</button>
 
     </>
 );
 
 export default Home;
+
