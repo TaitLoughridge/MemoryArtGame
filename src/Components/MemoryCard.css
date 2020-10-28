@@ -1,15 +1,23 @@
 .MemoryCardBack {
-	background: #662485;
+	background: #303f9f;
 }
+
+.helper {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
 img {
 	width: 100%;
-	padding-top: 13PX;
+	height: auto;
+	vertical-align: middle;
 }
 .MemoryCard {
 	display: inline-block;
-	width: 100px;
+	width: 15%;
 	height: 100px;
-	margin: 5px;
+	margin: 1.5%;
 	cursor: pointer;
 	position: relative;
 	perspective: 800px;

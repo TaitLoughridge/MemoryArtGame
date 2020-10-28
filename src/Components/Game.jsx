@@ -7,8 +7,8 @@ import './Game.css';
 
 function generateDeck(images) {
 	const deck = [];
-	for (let i = 0; i < 16; i++) {
-		const card = { isFlipped: false, symbol: images[i % 8] };
+	for (let i = 0; i < 20; i++) {
+		const card = { isFlipped: false, symbol: images[i % 10] };
 		deck.push(card);
 	}
 
@@ -49,7 +49,7 @@ class Game extends Component {
 		let imagesArray = [];
 
 		Promise.all(
-			shuffledArt.slice(0, 8).map(async (id) => {
+			shuffledArt.slice(0, 10).map(async (id) => {
 				return await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`).then((response) =>
 					response.json()
 				);
@@ -134,12 +134,14 @@ class Game extends Component {
 			);
 		});
 		return (
-			<div className="App">
-				<button onClick={() => window.location.reload(false)}>Click to reload!</button>
-				<div>{cardsJSX.slice(0, 4)}</div>
-				<div>{cardsJSX.slice(4, 8)}</div>
-				<div>{cardsJSX.slice(8, 12)}</div>
-				<div>{cardsJSX.slice(12, 16)}</div>
+			<div className="App CardGame container centered">
+				<div>{cardsJSX.slice(0, 5)}</div>
+				<div>{cardsJSX.slice(5, 10)}</div>
+				<div>{cardsJSX.slice(10, 15)}</div>
+				<div>{cardsJSX.slice(15, 20)}</div>
+				<button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}>
+					Click to reload!
+				</button>
 			</div>
 		);
 	}

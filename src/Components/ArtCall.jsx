@@ -30,7 +30,7 @@ class ArtCall extends Component {
 
 				// console.log('shuffled: ', shuffledArt.slice(0, 8));
 
-				shuffledArt.slice(0, 8).forEach((id) => {
+				shuffledArt.slice(0, 30).forEach((id) => {
 					fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
 						.then((response) => response.json())
 						.then((artWork) => {

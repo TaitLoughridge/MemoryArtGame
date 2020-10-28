@@ -7,11 +7,11 @@ import '../App.css';
 
 const Home = props => (
     <>
-    <h1>Art Match</h1>
-    <p>Welcome to Art Match, the game all about art!</p>
-    <div class="input-field col s12">
+    <h1 className='blue-grey-text text-lighten-4'>Art Match</h1>
+    <p className='blue-grey-text text-lighten-4'>Welcome to Art Match, the game all about art!</p>
+    <div class="input-field col s12 container centered">
       <select>
-        <option value="" disabled selected>Choose a Art Movement</option>
+        <option value="" disabled selected>Choose an Art Movement</option>
         <option value="Medieval">Medieval</option>
         <option value="Renaissance">Renaissance</option>
         <option value="Baroque">Baroque</option>
@@ -37,8 +37,8 @@ const Home = props => (
       </select>
       </div>
       <br/>
-      <button class="waves-effect waves-light btn" onClick={() => window.location.reload(false)}>Play Game</button>
-      <button class="waves-effect waves-light btn" onClick={() => window.location.reload(false)}>Just the Art</button>
+      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}>Play Game</button>
+      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}>Just the Art</button>
 
     </>
 );
