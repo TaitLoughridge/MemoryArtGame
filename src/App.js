@@ -17,26 +17,28 @@ function App() {
 	return (
 		<div className="App">
 			<Router>
-				<nav>
-					<div className="nav-wrapper indigo darken-2">
-						<a href="#" classNAme="brand-logo">
-							Logo
-						</a>
-						<ul id="nav-mobile" className="right hide-on-med-and-down">
-							<li>
-								<a>
-									<Link
-										onClick={() => {
-											window.location.href = '/';
-										}}
-									>
-										Home
-									</Link>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
+				<div class="navbar-fixed">
+					<nav>
+						<div className="nav-wrapper indigo darken-2">
+							<a href="/" className="brand-logo left">
+								Art Match
+							</a>
+							<ul id="nav-mobile" className="right">
+								<li>
+									<a>
+										<Link
+											onClick={() => {
+												window.location.href = '/';
+											}}
+										>
+											Home
+										</Link>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
 				<Switch>
 					<Route exact path="/">
 						<Home />

@@ -11,16 +11,10 @@ class Home extends React.Component {
     this.state = {value: ''};
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
-    event.preventDefault();
   }
 
   render() {
@@ -30,7 +24,7 @@ class Home extends React.Component {
     <h1 className='blue-grey-text text-lighten-4'>Art Match</h1>
     <p className='blue-grey-text text-lighten-4'>Welcome to Art Match, the game all about art!</p>
     <form onSubmit={this.handleSubmit}>
-    <div class="input-field col s12 container centered">
+    <div className="input-field col s12 container centered blue-grey-text text-lighten-4">
       <select value={this.state.value} onChange={this.handleChange}>
         <option value="Choose an Art Movement">Choose an Art Movement</option>
         <option value="Medieval">Medieval</option>
@@ -45,21 +39,10 @@ class Home extends React.Component {
         <option value="Impressionism">Impressionism</option>
         <option value="Post-Impressionism">Post-Impressionism</option>
         <option value="Symbolism">Symbolism</option>
-        <option value="Fauvism">Fauvism</option>
         <option value="Expressionism">Expressionism</option>
-        <option value="Cubism">Cubism</option>
         <option value="Futurism">Futurism</option>
-        <option value="Abstract">Abstract</option>
-        <option value="Dada">Dada</option>
-        <option value="Precisionism">Precisionism</option>
-        <option value="Surrealism">Surrealism</option>
-        <option value="Art-Deco">Art-Deco</option>
-        <option value="Pop-Art">Pop-Art</option>
       </select>
       <button class="waves-effect waves-light btn cyan darken-3"><Link to={`/game/${this.state.value}`}>Play Game</Link></button>
-
-      <br/>
-
       <button class="waves-effect waves-light btn cyan darken-3"><Link to={`/justart/${this.state.value}`}>Just The Art</Link></button>
 
     </div>

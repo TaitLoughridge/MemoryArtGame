@@ -49,3 +49,7 @@
 .input-field {
 	max-width: 250px;
 }
+
+.select-dropdown {
+	color: #eceff1;
+}

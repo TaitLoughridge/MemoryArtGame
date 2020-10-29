@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MemoryCard from './MemoryCard';
-
 import 'materialize-css';
 import '../App.css';
 import './Game.css';
@@ -142,9 +141,26 @@ class Game extends Component {
 				<div>{cardsJSX.slice(5, 10)}</div>
 				<div>{cardsJSX.slice(10, 15)}</div>
 				<div>{cardsJSX.slice(15, 20)}</div>
+
 				<button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}>
 					Click to reload!
 				</button>
+
+				<br />
+
+				<div class="preloader-wrapper big active">
+					<div class="spinner-layer spinner-blue">
+						<div class="circle-clipper left">
+							<div class="circle" />
+						</div>
+						<div class="gap-patch">
+							<div class="circle" />
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle" />
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
