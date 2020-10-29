@@ -137,6 +137,8 @@ class Game extends Component {
 		});
 		return (
 			<div className="App CardGame container centered">
+				<h1 className="blue-grey-text text-lighten-4">Art Match</h1>
+
 				<div>{cardsJSX.slice(0, 5)}</div>
 				<div>{cardsJSX.slice(5, 10)}</div>
 				<div>{cardsJSX.slice(10, 15)}</div>
