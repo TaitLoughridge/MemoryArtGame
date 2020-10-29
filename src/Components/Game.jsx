@@ -27,18 +27,20 @@ function shuffle(a) {
 class Game extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			deck: [],
 			pickedCards: [],
 			allArtData: [],
 			artData: [],
-			imagesArray: []
+			imagesArray: [],
+			value: this.props.match.params
 		};
 	}
 
-	fetchArtwork = async (category) => {
+	fetchArtwork = async (value) => {
 		const allArtData = await fetch(
-			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=${category}`
+			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=${value}`
 		).then((response) => response.json());
 
 		const shuffledArt = allArtData.objectIDs
@@ -69,7 +71,8 @@ class Game extends Component {
 	};
 
 	async componentDidMount() {
-		this.fetchArtwork('Rococo');
+		const { value } = this.state.value;
+		this.fetchArtwork(value);
 	}
 
 	pickCard = (cardIndex) => {

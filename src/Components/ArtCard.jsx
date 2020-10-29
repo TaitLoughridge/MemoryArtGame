@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import './MemoryCard.css';
-
+import React from 'react';
 import 'materialize-css';
+import './JustArt.css';
 
 function ArtCard(props) {
 	const { artWork } = props;

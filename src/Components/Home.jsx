@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-
 import 'materialize-css';
 import './Home.css'
 import '../App.css';
@@ -25,6 +24,7 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log(this.state.value)
     return (
     <>
     <h1 className='blue-grey-text text-lighten-4'>Art Match</h1>
@@ -56,9 +56,12 @@ class Home extends React.Component {
         <option value="Art-Deco">Art-Deco</option>
         <option value="Pop-Art">Pop-Art</option>
       </select>
-      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}><Link to="/game">Play Game</Link></button>
+      <button class="waves-effect waves-light btn cyan darken-3"><Link to={`/game/${this.state.value}`}>Play Game</Link></button>
+
       <br/>
-      <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}><Link to="/justart">Just The Art</Link></button>
+
+      <button class="waves-effect waves-light btn cyan darken-3"><Link to={`/justart/${this.state.value}`}>Just The Art</Link></button>
+
     </div>
     </form>
     </>

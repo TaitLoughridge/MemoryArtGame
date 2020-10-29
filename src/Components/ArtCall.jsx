@@ -6,39 +6,49 @@ import 'materialize-css';
 class ArtCall extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			allArtData: [],
-			artData: []
+			artData: [],
+			imagesArray: []
 		};
 	}
 
-	componentDidMount() {
-		fetch(
-			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=Impressionism`
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				this.setState({ allArtData: data });
-				// console.log(data);
+	fetchArtwork = async () => {
+		const { value } = this.props;
+		const allArtData = await fetch(
+			`https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Paintings&hasImages=true&q=${value}`
+		).then((response) => response.json());
 
-				let unshuffledArt = data.objectIDs;
+		const shuffledArt = allArtData.objectIDs
+			.map((a) => ({ sort: Math.random(), value: a }))
+			.sort((a, b) => a.sort - b.sort)
+			.map((a) => a.value);
 
-				let shuffledArt = unshuffledArt
-					.map((a) => ({ sort: Math.random(), value: a }))
-					.sort((a, b) => a.sort - b.sort)
-					.map((a) => a.value);
+		let imagesArray = [];
 
-				// console.log('shuffled: ', shuffledArt.slice(0, 8));
-
-				shuffledArt.slice(0, 30).forEach((id) => {
-					fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-						.then((response) => response.json())
-						.then((artWork) => {
-							this.setState({ artData: [ ...this.state.artData, artWork ] });
-							console.log(artWork);
-						});
-				});
+		Promise.all(
+			shuffledArt.slice(0, 30).map(async (id) => {
+				return await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`).then((response) =>
+					response.json()
+				);
+			})
+		).then((artData) => {
+			artData.map((artWork) => {
+				imagesArray = [ ...imagesArray, artWork.primaryImageSmall ];
 			});
+
+			this.setState({
+				artData,
+				allArtData,
+				imagesArray
+			});
+		});
+	};
+
+	async componentDidMount() {
+		const { value } = this.props.value;
+		this.fetchArtwork(value);
 	}
 
 	render() {

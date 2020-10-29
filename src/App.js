@@ -18,27 +18,31 @@ function App() {
 		<div className="App">
 			<Router>
 				<nav>
-					<div class="nav-wrapper indigo darken-2">
-						<Link
-							onClick={() => {
-								window.location.href = '/';
-							}}
-						>
-							Home{' '}
-						</Link>
+					<div className="nav-wrapper indigo darken-2">
+						<a href="#" classNAme="brand-logo">
+							Logo
+						</a>
+						<ul id="nav-mobile" className="right hide-on-med-and-down">
+							<li>
+								<a>
+									<Link
+										onClick={() => {
+											window.location.href = '/';
+										}}
+									>
+										Home
+									</Link>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</nav>
 				<Switch>
 					<Route exact path="/">
 						<Home />
 					</Route>
-					<Route path="/game">
-						<Game />
-					</Route>
-					<Route path="/justart">
-						<JustArt />
-					</Route>
-					{/* needs to be last Route */}
+					<Route path="/game/:value" component={Game} />
+					<Route path="/justart/:value" component={JustArt} />
 					<Route path="*">
 						<h2>PAGE NOT FOUND!</h2>
 						<Link to="/">Return to Homepage</Link>

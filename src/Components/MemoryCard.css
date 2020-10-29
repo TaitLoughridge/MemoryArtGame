@@ -1,5 +1,6 @@
 .MemoryCardBack {
 	background: #303f9f;
+	border-radius: 5px;
 }
 
 .helper {
@@ -8,15 +9,24 @@
 	vertical-align: middle;
 }
 
-img {
-	width: 100%;
+.img2 {
+	width: auto;
 	height: auto;
+	max-height: 150px;
+	max-width: 115px;
 	vertical-align: middle;
 }
+
+.logo {
+	width: auto;
+	height: 138px;
+	vertical-align: middle;
+}
+
 .MemoryCard {
 	display: inline-block;
-	width: 15%;
-	height: 100px;
+	width: 115px;
+	height: 150px;
 	margin: 1.5%;
 	cursor: pointer;
 	position: relative;
@@ -37,6 +47,7 @@ img {
 	font-size: 30px;
 	line-height: 72px;
 	transform: rotateX(-180deg);
+	vertical-align: middle;
 }
 
 .MemoryCardFront,
