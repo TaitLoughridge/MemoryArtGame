@@ -20,7 +20,7 @@ Art Memory is an app that will let a user browse through artistic pieces and pla
 ## API Reference
 <a href="https://metmuseum.github.io/">The Met API</a>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/64d8c303-cbc5-448e-95f1-6bfd67abd5c9/deploy-status)](https://app.netlify.com/sites/memoryartgame/deploys)
-
 ## Credits
--<a href="https://github.com/TaitLoughridge">Tait A-Meglasson</a>
+-<a href="https://github.com/TaitLoughridge">Tait Loughridge</a>
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/64d8c303-cbc5-448e-95f1-6bfd67abd5c9/deploy-status)](https://app.netlify.com/sites/memoryartgame/deploys)

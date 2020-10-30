@@ -150,7 +150,7 @@ class Game extends Component {
 
 				<br />
 
-				<div class="preloader-wrapper big active">
+				{/* <div class="preloader-wrapper big active">
 					<div class="spinner-layer spinner-blue">
 						<div class="circle-clipper left">
 							<div class="circle" />
@@ -162,7 +162,7 @@ class Game extends Component {
 							<div class="circle" />
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		);
 	}
