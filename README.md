@@ -1,6 +1,9 @@
 ## Project title
 ArtMatch
 
+## View Live
+https://memoryartgame.netlify.app/
+
 ## Description
 Art Memory is an app that will let a user browse through artistic pieces and play a memory card game with the art. This is a solo React project.
 

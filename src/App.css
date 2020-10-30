@@ -73,3 +73,7 @@ nav .brand-logo img {
 	width: auto;
 	height: 138px;
 }
+
+::-webkit-scrollbar {
+	display: none;
+}

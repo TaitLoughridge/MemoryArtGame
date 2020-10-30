@@ -1,2 +1,2 @@
 [[redirects]]
-/app/*  /app/index.html  200!
+/app/game/*  /app/game/  200!

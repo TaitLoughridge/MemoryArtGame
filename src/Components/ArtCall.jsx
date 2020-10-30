@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ArtCard from './ArtCard';
-
 import 'materialize-css';
 
 class ArtCall extends Component {
