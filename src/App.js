@@ -21,7 +21,7 @@ function App() {
 					<nav>
 						<div className="nav-wrapper indigo darken-2">
 							<a href="/" className="brand-logo left">
-								<img src="/images/AM-ArtMemory-logo-name2.png" />
+								<img src="/images/AM-ArtMemory-logo-name2.png" alt="logo" />
 							</a>
 							<ul id="nav-mobile" className="right">
 								<li>

@@ -129,6 +129,14 @@ class Game extends Component {
 		});
 	};
 
+	reloadGame() {
+		const { value } = this.state.value;
+		this.setState({
+			deck: []
+		});
+		this.fetchArtwork(value);
+	}
+
 	render() {
 		const cardsJSX = this.state.deck.map((card, index) => {
 			return (
@@ -144,7 +152,10 @@ class Game extends Component {
 				<div>{cardsJSX.slice(10, 15)}</div>
 				<div>{cardsJSX.slice(15, 20)}</div>
 
-				<button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload()}>
+				<button
+					class="waves-effect waves-light btn cyan darken-3"
+					onClick={() => window.location.reload(this.state.value)}
+				>
 					Click to reload!
 				</button>
 

@@ -9,10 +9,10 @@ const JustArt = (props) => {
 
 	return (
 		<div className="App">
-			<h1 className="blue-grey-text text-lighten-4 jumbotron" />
-			<button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload()}>
+			<h1 className="blue-grey-text text-lighten-4 jumbotron" alt="logo" />
+			{/* <button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload()}>
 				Click to reload!
-			</button>
+			</button> */}
 			<div>
 				<ArtCall value={value} />
 			</div>
