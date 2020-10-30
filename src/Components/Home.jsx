@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import 'materialize-css';
 import './Home.css';
 import '../App.css';
+import Welcome from './Welcome';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -21,7 +22,7 @@ class Home extends React.Component {
 		return (
 			<div className="home">
 				<h1 className="blue-grey-text text-lighten-4 jumbotron" />
-				<p className="blue-grey-text text-lighten-4">Welcome to Art Match, the game all about art!</p>
+				<Welcome />
 				<form onSubmit={this.handleSubmit}>
 					<div className="input-field col s12 container centered blue-grey-text text-lighten-4">
 						<select value={this.state.value} onChange={this.handleChange}>

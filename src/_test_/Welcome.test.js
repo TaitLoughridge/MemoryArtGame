@@ -18,5 +18,5 @@ it('renders with a header', () => {
 	act(() => {
 		render(<Welcome />, container);
 	});
-	expect(container.textContent).toBe('Art Match');
+	expect(container.textContent).toBe('Welcome to Art Match, the game all about art!');
 });

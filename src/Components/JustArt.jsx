@@ -16,7 +16,6 @@ const JustArt = (props) => {
 			<div>
 				<ArtCall value={value} />
 			</div>
-
 			<div class="preloader-wrapper big active">
 				<div class="spinner-layer spinner-blue">
 					<div class="circle-clipper left">
