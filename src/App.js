@@ -21,7 +21,7 @@ function App() {
 					<nav>
 						<div className="nav-wrapper indigo darken-2">
 							<a href="/" className="brand-logo left">
-								Art Match
+								<img src="/images/AM-ArtMemory-logo-name2.png" />
 							</a>
 							<ul id="nav-mobile" className="right">
 								<li>
@@ -39,6 +39,7 @@ function App() {
 						</div>
 					</nav>
 				</div>
+
 				<Switch>
 					<Route exact path="/">
 						<Home />
@@ -46,8 +47,8 @@ function App() {
 					<Route path="/game/:value" component={Game} />
 					<Route path="/justart/:value" component={JustArt} />
 					<Route path="*">
-						<h2>PAGE NOT FOUND!</h2>
-						<Link to="/">Return to Homepage</Link>
+						<h2 className="blue-grey-text text-lighten-4">PAGE NOT FOUND!</h2>
+						<p className="blue-grey-text text-lighten-4">Please select a Movement</p>
 					</Route>
 				</Switch>
 			</Router>

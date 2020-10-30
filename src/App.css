@@ -48,3 +48,28 @@ a {
 	color: inherit; /* blue colors for links too */
 	text-decoration: inherit; /* no underline */
 }
+
+nav .brand-logo {
+	position: inherit;
+	color: #fff;
+	display: inline-block;
+	font-size: 2.1rem;
+	padding: 0 0 0 22px;
+}
+
+nav .brand-logo img {
+	height: 57px;
+	padding: 7px 0 0 0;
+}
+
+.jumbotron {
+	background-image: url('/images/AM-ArtMemory-logo-name2.png');
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	border-radius: 0.3rem;
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	width: auto;
+	height: 138px;
+}
