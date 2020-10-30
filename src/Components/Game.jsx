@@ -144,7 +144,7 @@ class Game extends Component {
 				<div>{cardsJSX.slice(10, 15)}</div>
 				<div>{cardsJSX.slice(15, 20)}</div>
 
-				<button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload(false)}>
+				<button class="waves-effect waves-light btn cyan darken-3" onClick={() => window.location.reload()}>
 					Click to reload!
 				</button>
 
